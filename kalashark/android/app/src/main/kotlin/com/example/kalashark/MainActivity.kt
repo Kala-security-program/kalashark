@@ -34,6 +34,12 @@ class MainActivity : FlutterActivity() {
 
                 "stopVpn" -> {
                     stopService(Intent(this, KalaVpnService::class.java))
+
+                    // 👇 Open VPN Settings UI so user can disconnect manually
+                    val vpnIntent = Intent("android.net.vpn.SETTINGS")
+                    vpnIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(vpnIntent)
+
                     result.success(null)
                 }
 
